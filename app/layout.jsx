@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Navbar from "@/components/Navbar";
 
 import './globals.css'
 
@@ -15,7 +14,6 @@ export default function RootLayout({ children }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <body>
-        <Navbar />
         {children}
       </body>
     </html>

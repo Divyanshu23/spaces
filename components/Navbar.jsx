@@ -29,9 +29,9 @@ const Navbar = () => {
                 <section className="relative mx-auto">
                     <nav className="flex justify-between bg-gray-900 text-white w-screen">
                         <div className="px-5 xl:px-12 py-3 flex w-full items-center">
-                            <a className="text-3xl font-bold font-heading" href="/about">
+                            <Link className="text-3xl font-bold font-heading" href="/">
                                 <Image src="/logo.png" alt="logo" width={300} height={100} sizes="10vw" style={{ width: '100%', height: 'auto' }} priority />
-                            </a>
+                            </Link>
 
                             <ul className="hidden md:flex px-4 mx-auto font-semibold md:text-lg font-heading space-x-12">
                                 <li>
@@ -57,7 +57,7 @@ const Navbar = () => {
                                             {
                                                 [...Array(10)].map((u, i) => {
                                                     return <li key={i}>
-                                                        <a href="#" className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">{"L" + (i + 1)}</a>
+                                                        <a href="#" className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">{"Lab " + (i + 1)}</a>
                                                     </li>
                                                 })
                                             }
@@ -102,14 +102,14 @@ const Navbar = () => {
             </div>
 
             <div className="absolute bottom-0 right-24 mb-4 mr-4 z-10">
-                <div>
+                <Link href="/signup">
                     <button type="button" className="px-4 py-2 text-sm font-medium text-center text-white bg-[#480cfc] rounded-lg hover:bg-[#3a0aca] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[[#480cfc]] dark:hover:bg-[#3a0aca] dark:focus:ring-[#3a0aca] transition-all shadow hover:shadow-lg transform hover:scale-110"><div className="w-full flex items-center space-x-1"><BiUserPlus /><span>Signup</span></div></button>
-                </div>
+                </Link>
             </div>
             <div className="absolute bottom-0 right-0 mb-4 mr-4 z-10">
-                <div>
+                <Link href="/login">
                     <button type="button" className="px-4 py-2 text-sm font-medium text-center text-white bg-[#480cfc] rounded-lg hover:bg-[#3a0aca] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[[#480cfc]] dark:hover:bg-[#3a0aca] dark:focus:ring-[#3a0aca] transition-all shadow hover:shadow-lg transform hover:scale-110"><div className="w-full flex items-center space-x-1"><BiUserPlus /><span>Login</span></div></button>
-                </div>
+                </Link>
             </div>
         </>
     )
