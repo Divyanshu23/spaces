@@ -34,6 +34,7 @@ const Signup = () => {
     }
 
     const handleLogin = async (e) => {
+        console.log("signup")
         if (user.password === undefined || user.password === "") {
             unsamePasswordsRef.current.textContent = "Password can't be empty"
             toggelunsamePasswordRef()
@@ -41,7 +42,7 @@ const Signup = () => {
             try {
                 delete user.confirmPassword
                 const response = await fetch(`${process.env.HOST_URI}/api/login`, {
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-type": "application/json",
                     },

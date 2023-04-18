@@ -40,7 +40,8 @@ const Login = () => {
         } else if (user.password === user.confirmPassword) {
             try {
                 delete user.confirmPassword
-                const response = await fetch(`${process.env.HOST_URI}/api/login`, {
+                console.log(user)
+                const response = await fetch(`http://localhost:3001/api/login`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json",
@@ -48,8 +49,9 @@ const Login = () => {
                     body: JSON.stringify(user)
                 })
                 const jsonResponse = await response.json()
+                console.log(jsonResponse)
                 if (jsonResponse.success === true) {
-                    localStorage.setItem("authToken", jsonResponse.authToken)
+                    // localStorage.setItem("authToken", jsonResponse.authToken)
                     // dispatch(userActions.setLogin(true))
                     // if(jsonResponse.isAdmin) {
                     //     dispatch(userActions.toggleAdmin(true))
