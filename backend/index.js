@@ -1,7 +1,7 @@
 const express = require("express")
 // const {connectToDB, connection} = require('./db')
 const authRouter = require("./routes/auth")
-const queryRouter = require("./routes/query")
+const queryRouter = require("./routes/lh_query")
 
 const cors = require("cors")
 
@@ -16,7 +16,7 @@ app.use(cors())
 console.log('Hello!!');
 app.use("/api", authRouter)
 
-app.use("/show", queryRouter)
+app.use("/lh_query", queryRouter)
 
 
 app.listen(port, () => {
