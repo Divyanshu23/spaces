@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 console.log('Hello!!');
-app.use("/api", authRouter)
+app.use("/api", authRouter)   // login and signup
 
 app.use("/lh_query", queryRouter)
 
