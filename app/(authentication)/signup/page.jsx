@@ -33,8 +33,11 @@ const Signup = () => {
         }
     }
 
-    const handleLogin = async (e) => {
-        if (user.password === undefined || user.password === "") {
+    const handleSignup = async (e) => {
+        if (user.email === undefined || user.email === "") {
+            unsamePasswordsRef.current.textContent = "Email can't be empty"
+            toggelunsamePasswordRef()
+        } else if (user.password === undefined || user.password === "") {
             unsamePasswordsRef.current.textContent = "Password can't be empty"
             toggelunsamePasswordRef()
         } else if (user.password === user.confirmPassword) {
@@ -133,7 +136,7 @@ const Signup = () => {
 
                         <button
                             type="submit"
-                            className="w-full text-center text-lg py-3 text-white bg-[#480cfc] rounded-lg hover:bg-[#3a0aca] focus:ring-blue-300 dark:bg-[[#480cfc]] dark:hover:bg-[#3a0aca] dark:focus:ring-[#3a0aca] focus:outline-none my-1" onClick={handleLogin}
+                            className="w-full text-center text-lg py-3 text-white bg-[#480cfc] rounded-lg hover:bg-[#3a0aca] focus:ring-blue-300 dark:bg-[[#480cfc]] dark:hover:bg-[#3a0aca] dark:focus:ring-[#3a0aca] focus:outline-none my-1" onClick={handleSignup}
                         >Signup</button>
                     </div>
 

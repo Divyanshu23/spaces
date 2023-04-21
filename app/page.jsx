@@ -12,8 +12,8 @@ export default async function Home() {
           <Image src="/hero.jpg" alt="IITK" quality={100} fill sizes="100vw" style={{ objectFit: 'cover' }} />
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
         </div>
-        <div className="max-w-7xl mx-auto relative z-10 px-6">
-          <h1 className="text-4xl font-serif font-bold text-white mb-8 md:mb-12 lg:mb-16 lg:text-6xl">IIT Kanpur's Booking System</h1>
+        <div className="max-w-7xl mx-auto relative px-6">
+          <h1 className="text-4xl font-serif font-bold text-white mb-8 md:mb-12 lg:mb-16 lg:text-6xl">IIT Kanpur&apos; Booking System</h1>
           <div className="flex flex-col md:flex-row items-center mb-12">
             <div className="w-full md:w-1/4 bg-white rounded-2xl py-3 px-4 mb-4 md:mb-0">
               <label htmlFor="check-in" className="font-semibold text-lg text-center block pb-1">Day</label>
@@ -72,7 +72,9 @@ export default async function Home() {
               </select>
             </div>
           </div>
-          <button className="bg-[#480cfc] text-white rounded-full py-4 px-8 font-bold shadow-lg hover:shadow-xl transition duration-300"><div className="w-full flex items-center space-x-1"><MdEventAvailable /><span>Check Availability</span></div></button>
+          <button className="bg-[#480cfc] text-white rounded-full py-4 px-8 font-bold shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-110 mx-2"><div className="w-full flex items-center space-x-1"><MdEventAvailable /><span>Check LHCs</span></div></button>
+          <button className="bg-[#480cfc] text-white rounded-full py-4 px-8 font-bold shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-110 mx-2"><div className="w-full flex items-center space-x-1"><MdEventAvailable /><span>Check Labs</span></div></button>
+          <button className="bg-[#480cfc] text-white rounded-full py-4 px-8 font-bold shadow-lg hover:shadow-xl duration-300 transition-all transform hover:scale-110 mx-2"><div className="w-full flex items-center space-x-1"><MdEventAvailable /><span>Check Auditorium</span></div></button>
         </div>
       </div>
       <Footer/>

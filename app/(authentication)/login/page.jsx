@@ -34,7 +34,10 @@ const Login = () => {
     }
 
     const handleLogin = async (e) => {
-        if (user.password === undefined || user.password === "") {
+        if (user.email === undefined || user.email === "") {
+            unsamePasswordsRef.current.textContent = "Email can't be empty"
+            toggelunsamePasswordRef()
+        } else if (user.password === undefined || user.password === "") {
             unsamePasswordsRef.current.textContent = "Password can't be empty"
             toggelunsamePasswordRef()
         } else if (user.password === user.confirmPassword) {
