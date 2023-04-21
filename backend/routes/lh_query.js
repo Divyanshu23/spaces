@@ -1,12 +1,13 @@
 const express = require("express")
-const queryController = require("../controllers/lh_query")
+const check_availability_controller = require("../controllers/lh_query")
+const myBookings_controller = require("../controllers/myBookings")
 const validateToken = require("../middleware/validateToken")
 
 const router = express.Router()
 console.log('query req is successful till router');
 
-router.get("/lh_query", [validateToken], queryController)
-
+router.get("/check_availability", [validateToken], check_availability_controller)
+router.get("/myBookings", [validateToken], myBookings_controller)
  
 
 module.exports = router
