@@ -28,11 +28,11 @@ const user_future_bookings = async (req, res) => {
     // get current year
     let year = date_time.getFullYear();
     str_date = year + "-" + month + "-" + date;
-
+    let available;
 
     try {
         // query is incomplete
-        var available =  await query("SELECT JSON_OBJECT('Lecture Hall', hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lh_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? and date > ? ORDER BY date asc ", [email, str_date] );
+        available =  await query("SELECT JSON_OBJECT('Lecture Hall', hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lh_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? and date > ? ORDER BY date asc ", [email, str_date] );
         // var available = await query("SELECT JSON_OBJECT('Lecture Hall', lec_hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lhc_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? and date > ? ORDER BY date asc ", [email, str_date] );
 
         console.log(available);

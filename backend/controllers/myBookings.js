@@ -18,10 +18,10 @@ const query = util.promisify(connection.query).bind(connection);
 const user_bookings = async (req, res) => {
 
     const { email } = req.body;    
-    
+    let available;
     try {
         // query is incomplete
-        var available =  await query("SELECT JSON_OBJECT('Lecture Hall', hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lh_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? ORDER BY date desc ", [email] );
+        available =  await query("SELECT JSON_OBJECT('Lecture Hall', hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lh_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? ORDER BY date desc ", [email] );
         console.log(available);
       } catch (error) {
         console.log('error in search query');
