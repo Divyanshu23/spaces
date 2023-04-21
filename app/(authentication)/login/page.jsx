@@ -125,6 +125,18 @@ const Login = () => {
                             </svg>
                         </div>
 
+                        <div className="pl-2 mb-4">
+                            <p className="pb-1 font-medium">You are a ?</p>
+                            <div className="inline pr-5">
+                                <input type="radio" id="student" name="fav_language" value="Student" checked />
+                                <label className="pl-2" htmlFor="html">Student</label>
+                            </div>
+                            <div className="inline">
+                                <input type="radio" id="professor" name="fav_language" value="Professor" />
+                                <label className="pl-2" htmlFor="html">Professor</label>
+                            </div>
+                        </div>
+
                         <div className="invisible text-red-600 my-1" ref={unsamePasswordsRef}>
                             <div className="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mx-2 inline">
