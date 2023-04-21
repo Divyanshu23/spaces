@@ -60,3 +60,9 @@ DELETE
 
 
 
+
+how to push
+
+git add .
+git commit -m "message"
+git push origin branch_name
