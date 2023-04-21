@@ -12,17 +12,18 @@ const util = require('util');
 const query = util.promisify(connection.query).bind(connection);
  
 const dues = async (req, res) => {
+        let dues;
         const { id, user_type } = req.body ;
-        // const id = 1909600;
+        // const id = 190960;
         // const user_type = 'student';
-        const sql = "SELECT JSON_OBJECT('Amount Due', dues) from student WHERE roll = ?";
+        var sql = "SELECT JSON_OBJECT('Amount Due', dues) from student WHERE roll = ?";
         const values = [id];
         if(user_type == 'faculty'){
             sql =  "SELECT JSON_OBJECT('Amount Due', dues) from faculty WHERE fid = ?";
         }
 
         try {
-            var dues =  await query(sql, values );
+            dues =  await query(sql, values );
             console.log(dues);
           } catch (error) {
             console.log('error in search query');
@@ -31,6 +32,7 @@ const dues = async (req, res) => {
           } 
     
           res.json({dues});
+          // console.log(dues);
 
  }
 // dues();
