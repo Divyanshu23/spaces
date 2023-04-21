@@ -18,6 +18,7 @@ const query = util.promisify(connection.query).bind(connection);
 const user_future_bookings = async (req, res) => {
 
     const { email } = req.body;    
+    // let email = "videhag@iitk.ac.in"
     let date_time = new Date();
     let date = ("0" + date_time.getDate()).slice(-2);
 
@@ -32,6 +33,8 @@ const user_future_bookings = async (req, res) => {
     try {
         // query is incomplete
         var available =  await query("SELECT JSON_OBJECT('Lecture Hall', hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lh_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? and date > ? ORDER BY date asc ", [email, str_date] );
+        // var available = await query("SELECT JSON_OBJECT('Lecture Hall', lec_hall, 'Date', date, 'Start Time', start, 'End Time', end, 'Type of room', lhc_or_lab, 'Amount', amount) FROM Bookings WHERE email = ? and date > ? ORDER BY date asc ", [email, str_date] );
+
         console.log(available);
       } catch (error) {
         console.log('error in search query');
@@ -43,15 +46,10 @@ const user_future_bookings = async (req, res) => {
 
       console.log('query is here 5');
     }
-
+    // user_future_bookings();
 
 
     
 
 
 module.exports = user_future_bookings
-
-
-l
-
-console.log(str_date)
