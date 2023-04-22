@@ -2,7 +2,7 @@ Queries:  (Online Compiler to test queries: https://www.programiz.com/sql/online
 
 Tables:
 1. Student
-CREATE TABLE student(roll INT NOT NULL,  name varchar(50) NOT NULL, email varchar(50) NOT NULL, password varchar (64) NOT NULL, dept varchar(50), dues float NOT NULL, PRIMARY KEY ( roll ));
+CREATE TABLE student(roll INT NOT NULL, name varchar(50) NOT NULL, email varchar(50) NOT NULL, password varchar (64) NOT NULL, dept varchar(50), dues float NOT NULL, active boolean DEFAULT FALSE, otp varchar(50), PRIMARY KEY ( roll ));
 
 2. Faculty
 CREATE TABLE faculty(    fid INT NOT NULL,    name varchar(50) NOT NULL, email varchar(50) NOT NULL, password varchar (64) NOT NULL, dept varchar(50), amount float NOT NULL, PRIMARY KEY ( fid ));

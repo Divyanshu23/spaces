@@ -15,7 +15,7 @@ const login = async (req, res) => {
 
     if (user_type == 'student') {
         try {
-            const user = await pool.query('SELECT * FROM students where email=?', [email]);
+            const user = await pool.query('SELECT * FROM student where email=?', [email]);
 
             if (user[0].length == 0) {
                 return res.status(400).json({ success: false, error: "Invalid Credentials" })
@@ -33,7 +33,7 @@ const login = async (req, res) => {
     }
     else if (user_type == 'faculty') {
         try {
-            const user = await pool.query('SELECT * FROM faculties where email= ?', [email]);
+            const user = await pool.query('SELECT * FROM faculty where email= ?', [email]);
 
             if (user[0].length == 0) {
                 return res.status(400).json({ success: false, error: "Invalid Credentials" })
