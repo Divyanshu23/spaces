@@ -13,9 +13,9 @@ const login = async (req, res) => {
 
     const { email, password, user_type } = req.body
 
-    if (user_type == 'student') {
+    if (user_type != 'admin') {
         try {
-            const user = await pool.query('SELECT * FROM students where email=?', [email]);
+            const user = await pool.query('SELECT * FROM users where email=?', [email]);
 
             if (user[0].length == 0) {
                 return res.status(400).json({ success: false, error: "Invalid Credentials" })
@@ -30,27 +30,7 @@ const login = async (req, res) => {
         } catch (error) {
             res.status(500).json({ success: true, error: 'Internal Server Error' })
         }
-    }
-    else if (user_type == 'faculty') {
-        try {
-            const user = await pool.query('SELECT * FROM faculties where email= ?', [email]);
-
-            if (user[0].length == 0) {
-                return res.status(400).json({ success: false, error: "Invalid Credentials" })
-            }
-
-            if (!await bcrypt.compare(password, user[0][0].password))
-                return res.status(400).json({ success: false, error: "Invalid Credentials" })
-
-            delete user[0][0].password
-
-            const jwtToken = jwt.sign({ id: user[0].roll }, process.env.JWT_SECRET)
-            res.status(200).json({ success: true, authToken: jwtToken, user: user[0][0] })
-        } catch (error) {
-            res.status(500).json({ success: true, error: "Internal Server Error" })
-        }
-    }
-    else {
+    } else {
         try {
             const user = await pool.query('SELECT * FROM admin where email= ?', [email]);
 
@@ -62,6 +42,7 @@ const login = async (req, res) => {
                 return res.status(400).json({ success: false, error: "Invalid Credentials" })
 
             delete user[0][0].password
+            user[0][0].user_type = "admin"
 
             const jwtToken = jwt.sign({ id: user[0].roll }, process.env.JWT_SECRET)
             res.status(200).json({ success: true, authToken: jwtToken, user: user[0][0] })

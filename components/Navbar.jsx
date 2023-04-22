@@ -5,6 +5,7 @@ import { BiUserPlus } from "react-icons/bi"
 import { useSelector, useDispatch } from "react-redux"
 import { useRef } from "react"
 import Link from "next/link"
+import { toast, Flip } from "react-toastify"
 
 import { userActions } from "../store/userSlice"
 
@@ -42,22 +43,12 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem("authToken")
         dispatch(userActions.setLogin(false))
+        toast.success("Logged Out", {
+            position: toast.POSITION.BOTTOM_CENTER,
+            transition: Flip,
+            autoClose: 2000
+        });
     }
-
-    // const closeOpenMenus = (e) => {
-    //     if (lhcMenu.current.style.display == "block") {
-    //         // console.log(e.target.parentElement)
-    //         lhcMenu.current.style.display = "none"
-    //     }
-    //     if (labMenu.current.style.display == "block")
-    //         labMenu.current.style.display = "none"
-    //     if (accountMenu.current.style.display == "block")
-    //         accountMenu.current.style.display = "none"
-    // }
-
-    // useEffect(() => {
-    //     // document.addEventListener('mousedown', closeOpenMenus)
-    // }, [])
 
 
     return (
@@ -78,7 +69,7 @@ const Navbar = () => {
                                         {
                                             [...Array(20)].map((u, i) => {
                                                 return <li key={i}>
-                                                    <Link href="#" className="text-smhover:bg-gray-100 text-gray-700 block px-4 py-2 text-center">{"L" + (i + 1)}</Link>
+                                                    <Link href={`/lhc/${i+1}`} className="text-smhover:bg-gray-100 text-gray-700 block px-4 py-2 text-center">{"L" + (i + 1)}</Link>
                                                 </li>
                                             })
                                         }
@@ -93,14 +84,14 @@ const Navbar = () => {
                                         {
                                             [...Array(10)].map((u, i) => {
                                                 return <li key={i}>
-                                                    <Link href="#" className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2 text-center">{"Lab " + (i + 1)}</Link>
+                                                    <Link href={`/lab/${i+1}`} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2 text-center">{"Lab " + (i + 1)}</Link>
                                                 </li>
                                             })
                                         }
                                     </ul>
                                 </div>
                             </li>
-                            <li><Link className="hover:text-gray-400" href="#">Auditorium</Link></li>
+                            <li><Link className="hover:text-gray-400" href="/auditorium">Auditorium</Link></li>
                         </ul>
                         <div className="hidden lg:inline-block w-32">
                             <button className="flex items-center hover:text-gray-200" href="#" onClick={handleOpenAccount}>

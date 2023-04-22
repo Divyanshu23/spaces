@@ -1,12 +1,12 @@
 const express = require("express")
-const queryController = require("../controllers/lh_query")
+const checkAvailableLHCs = require("../controllers/checkAvailableLHCs")
+const checkAvailableLabs = require("../controllers/checkAvailableLabs")
 const validateToken = require("../middleware/validateToken")
 
 const router = express.Router()
-console.log('query req is successful till router');
 
-router.get("/lh_query", [validateToken], queryController)
-
+router.get("/checkLHCs", [validateToken], checkAvailableLHCs)
+router.get("/checkLabs", [validateToken], checkAvailableLabs)
  
 
 module.exports = router

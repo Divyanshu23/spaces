@@ -3,7 +3,9 @@
 import { useRef } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { toast, Flip } from "react-toastify"
 
 import { userActions } from "@/store/userSlice"
 
@@ -12,6 +14,7 @@ const Signup = () => {
     const router = useRouter()
     let user = {}
     const unsamePasswordsRef = useRef(null)
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn)
 
 
     const handleChange = (e) => {
@@ -29,6 +32,17 @@ const Signup = () => {
             e.currentTarget.previousElementSibling.previousElementSibling.type = "password"
         }
     }
+
+    useEffect(() => {
+        if(isLoggedIn) {
+            toast.info("Already Logged In. Sign out first!", {
+                position: toast.POSITION.BOTTOM_CENTER,
+                transition: Flip,
+                autoClose: 2000
+            });
+            router.push("/")
+        }
+    }, [])
 
     const handleSignup = async (e) => {
         if (user.email === undefined || user.email === "" || user.name === undefined || user.name === "" || user.id === undefined || user.id === "" || user.dept === undefined || user.dept === "" || user.user_type === undefined || user.type === "") {
@@ -54,12 +68,26 @@ const Signup = () => {
                     // if(jsonResponse.isAdmin) {
                     //     dispatch(userActions.toggleAdmin(true))
                     // }
+                    toast.success("Signed Up", {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        transition: Flip,
+                        autoClose: 2000
+                    });
                     router.push("/")
                 } else {
+                    toast.error(jsonResponse.error, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        transition: Flip,
+                        autoClose: 2000
+                    });
                     document.getElementById("confirm-password").value = ""
                 }
             } catch (error) {
-                console.log(error)
+                toast.error(error.message, {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    transition: Flip,
+                    autoClose: 2000
+                });
                 document.getElementById("confirm-password").value = ""
             }
         } else {
