@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Providers } from '@/store/Providers'
 
 import './globals.css'
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <body>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
