@@ -145,7 +145,7 @@ export default async function Home() {
               <label htmlFor="end-time" className="font-semibold text-lg text-center block pb-1">Min Capacity</label>
               <select ref={capacity} className="w-full border border-gray-300 rounded-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="time-slots" id="start-time" placeholder="capacity">
                 {
-                  [200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200].map((u, i) => {
+                  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100].map((u, i) => {
                     return (
                       <option key={u} value={u}>{"<= " + u}</option>
                     )
