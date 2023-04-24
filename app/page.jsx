@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 import { filterActions } from "@/store/filterSlice"
 
-export default async function Home() {
+export default function Home() {
   const dispatch = useDispatch()
 
   const date = useRef(null)
