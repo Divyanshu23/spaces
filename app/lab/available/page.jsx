@@ -5,6 +5,10 @@ import { toast, Flip } from "react-toastify"
 import { useEffect, useState } from "react";
 
 const Available = () => {
+  const isAdmin = useSelector(state => state.user.isAdmin)
+  if (isAdmin)
+    redirect("/admin")
+    
   const filter = useSelector(state => state.filter.filter)
   const [availableLabs, setAvailableLabs] = useState([])
 

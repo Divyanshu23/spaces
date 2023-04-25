@@ -43,6 +43,8 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem("authToken")
         dispatch(userActions.setLogin(false))
+        dispatch(userActions.setAdmin(false))
+        dispatch(userActions.setUser(null))
         toast.success("Logged Out", {
             position: toast.POSITION.BOTTOM_CENTER,
             transition: Flip,

@@ -36,7 +36,7 @@ async function createTable(table_name) {
             );
             await pool.execute(
                 `
-                INSERT INTO lhcs (lec_hall, capacity, projector, recording_camera, booking_rate) VALUES (1, 100, true, true, 300), (2, 150, true, false, 350), (3, 200, false, true, 400), (4, 250, true, false, 450), (5, 300, false, true, 500), (6, 350, false, false, 550), (7, 400, true, false, 600), (8, 450, false, false, 650), (9, 500, true, false, 700), (10, 550, true, true, 750), (11, 600, true, true, 800), (12, 650, false, true, 850), (13, 700, false, true, 900), (14, 750, false, false, 950), (15, 800, true, false, 1000), (16, 850, false, false, 1050), (17, 900, true, false, 1100), (18, 950, false, true, 1150), (19, 1100, true, true, 1300), (20, 1000, false, true, 1200), (21, 1050, true, true, 1250);`
+                INSERT INTO lhcs (lec_hall, capacity, projector, recording_camera, booking_rate) VALUES (1, 100, true, true, 300), (2, 150, true, false, 350), (3, 200, false, true, 400), (4, 250, true, false, 450), (5, 300, false, true, 500), (6, 350, false, false, 550), (7, 400, true, false, 600), (8, 450, false, false, 650), (9, 500, true, false, 700), (10, 550, true, true, 750), (11, 600, true, true, 800), (12, 650, false, true, 850), (13, 700, false, true, 900), (14, 750, false, false, 950), (15, 800, true, false, 1000), (16, 850, false, false, 1050), (17, 900, true, false, 1100), (18, 950, false, true, 1150), (19, 1100, true, true, 1300), (20, 1000, false, true, 1200);`
             );
         } else if (table_name == "labs") {
             await pool.execute(

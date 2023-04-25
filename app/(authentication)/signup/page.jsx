@@ -10,12 +10,16 @@ import { toast, Flip } from "react-toastify"
 import { userActions } from "@/store/userSlice"
 
 const Signup = () => {
+    const isAdmin = useSelector(state => state.user.isAdmin)
+    if (isAdmin)
+        redirect("/admin")
+        
     const dispatch = useDispatch()
     let user = {}
     const unsamePasswordsRef = useRef(null)
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
 
-    if((isLoggedIn)) {
+    if ((isLoggedIn)) {
         redirect("/")
     }
 
@@ -37,7 +41,7 @@ const Signup = () => {
     }
 
     useEffect(() => {
-        if(isLoggedIn) {
+        if (isLoggedIn) {
             toast.info("Already Logged In. Sign out first!", {
                 position: toast.POSITION.BOTTOM_CENTER,
                 transition: Flip,

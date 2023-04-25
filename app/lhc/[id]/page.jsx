@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from "next/navigation";
+
 
 import { filterActions } from "@/store/filterSlice"
 
@@ -17,6 +18,11 @@ export const dynamicParams = false
 
 const LHC = ({ params }) => {
   const id = params.id
+
+  const isAdmin = useSelector(state => state.user.isAdmin)
+
+  if(isAdmin)
+    redirect("/admin")
 
   const router = useRouter()
   const dispatch = useDispatch()

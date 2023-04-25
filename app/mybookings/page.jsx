@@ -8,6 +8,11 @@ import { toast, Flip } from "react-toastify"
 
 const MyBookings = () => {
   let user = useSelector(state => state.user.user)
+  const isAdmin = useSelector(state => state.user.isAdmin)
+
+  if (isAdmin)
+    redirect("/admin")
+    
   if (!user) redirect('/signup');
   const bookingParams = []
   const bookingParams2 = []
@@ -70,7 +75,7 @@ const MyBookings = () => {
       const jsonResponse = await response.json()
       if (jsonResponse.success === true) {
         const newLHCBookings = lhcBookings.filter((booking) => {
-          if(booking.lec_hall != cancelParams.hall)
+          if (booking.lec_hall != cancelParams.hall)
             return booking
         })
         setLHCBookings(newLHCBookings)
@@ -118,7 +123,7 @@ const MyBookings = () => {
       const jsonResponse = await response.json()
       if (jsonResponse.success === true) {
         const newLabBookings = labBookings.filter((booking) => {
-          if(booking.lab != cancelParams.hall)
+          if (booking.lab != cancelParams.hall)
             return booking
         })
         setLabBookings(newLabBookings)
@@ -176,7 +181,7 @@ const MyBookings = () => {
       <h2 className='text-center my-2 font-extrabold text-2xl'>Lab Bookings</h2>
       <div className="flex flex-col items-center">
         {
-          labBookings.map((booking,i) => {
+          labBookings.map((booking, i) => {
             const date = new Date(booking.date);
             const currentDate = new Date()
             const dateString = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();

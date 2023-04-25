@@ -11,11 +11,11 @@ const userSlice = createSlice({
         setLogin: (state, action) => {
             state.isLoggedIn = action.payload
         },
-        toggleAdmin: (state, action) => {
-            state.isAdmin = !state.isAdmin
-        },
         setUser: (state, action) => {
             state.user = action.payload
+        },
+        setAdmin: (state, action) => {
+            state.isAdmin = action.payload
         }
     }
 })

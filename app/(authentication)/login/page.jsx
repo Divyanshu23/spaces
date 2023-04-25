@@ -15,7 +15,7 @@ const Login = () => {
     const unsamePasswordsRef = useRef(null)
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
 
-    if(isLoggedIn) {
+    if (isLoggedIn) {
         redirect("/");
     }
 
@@ -30,7 +30,6 @@ const Login = () => {
                 transition: Flip,
                 autoClose: 2000
             });
-            // router.push("/")
         }
     }, [])
 
@@ -66,6 +65,8 @@ const Login = () => {
                 if (jsonResponse.success === true) {
                     localStorage.setItem("authToken", jsonResponse.authToken)
                     dispatch(userActions.setLogin(true))
+                    if (jsonResponse.user.user_type == "admin")
+                        dispatch(userActions.setAdmin(true))
                     dispatch(userActions.setUser(jsonResponse.user))
                     toast.success("Logged In", {
                         position: toast.POSITION.BOTTOM_CENTER,

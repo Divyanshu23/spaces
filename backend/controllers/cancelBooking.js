@@ -2,7 +2,6 @@ const pool = require("../db")
 
 const cancelBooking = async (req, res) => {
     const { hall, dateString, start, end, type } = req.body;
-    // console.log(dateString, req.body);
     const date = dateString.split("/").reverse().join("-");
     let bal;
     let user_id;
@@ -23,13 +22,11 @@ const cancelBooking = async (req, res) => {
             res.status(500).json({ error: 'Internal server error' });
         }
     } else if (type == 'lab') {
-        console.log("lab");
         try {
             let b = await pool.query("select amount, userid from lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, date, start, end])
 
             bal = b[0][0].amount;   // to be verified
             user_id = b[0][0].userid;
-            console.log(bal);
 
             await pool.query("Delete FROM lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, date, start, end]);
 

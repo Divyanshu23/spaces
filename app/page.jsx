@@ -9,6 +9,7 @@ import { useRef } from "react";
 import { toast, Flip } from "react-toastify"
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 import { filterActions } from "@/store/filterSlice"
 import { userActions } from "@/store/userSlice"
@@ -16,6 +17,10 @@ import { userActions } from "@/store/userSlice"
 export default function Home() {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+  const isAdmin = useSelector(state => state.user.isAdmin)
+
+  if(isAdmin)
+    redirect("/admin")
 
   useEffect(() => {
     const loginWithToken = async () => {
@@ -41,7 +46,7 @@ export default function Home() {
         console.log(error)
       }
     }
-    if(!isLoggedIn && localStorage.getItem("authToken") != null) {
+    if(!isLoggedIn && localStorage.getItem("authToken") != null && localStorage.getItem("authToken") != undefined) {
       loginWithToken()
     }
   }, [])

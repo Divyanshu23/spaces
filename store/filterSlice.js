@@ -9,9 +9,6 @@ const filterSlice = createSlice({
         changeFilter: (state, action) => {
             state.filter = action.payload
         },
-        clearFilter: (state, action) => {
-            state.cart = []
-        }
     }
 })
 
