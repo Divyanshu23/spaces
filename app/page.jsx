@@ -4,15 +4,48 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer"
 import Image from "next/image";
 import { MdEventAvailable } from "react-icons/md"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useRef } from "react";
 import { toast, Flip } from "react-toastify"
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import { filterActions } from "@/store/filterSlice"
+import { userActions } from "@/store/userSlice"
 
 export default function Home() {
   const dispatch = useDispatch()
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+
+  useEffect(() => {
+    const loginWithToken = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:3001/api/loginWithToken`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "auth-token": localStorage.getItem("authToken")
+          }
+        })
+        const jsonResponse = await response.json()
+        if (jsonResponse.success === true) {
+          dispatch(userActions.setLogin(true))
+          dispatch(userActions.setUser(jsonResponse.user))
+          toast.success("Logged In", {
+            position: toast.POSITION.BOTTOM_CENTER,
+            transition: Flip,
+            autoClose: 2000
+          });
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    if(!isLoggedIn && localStorage.getItem("authToken") != null) {
+      loginWithToken()
+    }
+  }, [])
+
 
   const date = useRef(null)
   const start = useRef(null)
@@ -147,7 +180,7 @@ export default function Home() {
                 {
                   [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100].map((u, i) => {
                     return (
-                      <option key={u} value={u}>{"<= " + u}</option>
+                      <option key={u} value={u}>{u}</option>
                     )
                   })
                 }

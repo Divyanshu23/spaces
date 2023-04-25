@@ -1,5 +1,5 @@
 const dotenv = require("dotenv")
-const mysql = require("mysql2")
+const mysql = require("mysql2/promise")
 
 dotenv.config()
 
@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DB
-}).promise()
+})
 
 // function to check if a table exists in the database
 async function tableExists(tableName) {
@@ -49,11 +49,11 @@ async function createTable(table_name) {
             );
         } else if (table_name == "lhc_bookings") {
             await pool.execute(
-                `CREATE TABLE lhc_bookings(lec_hall INT NOT NULL, userid INT NOT NULL, date DATE NOT NULL, start TIME NOT NULL, end TIME NOT NULL, amount float NOT NULL, PRIMARY KEY (lec_hall, userid, date, start, end), FOREIGN KEY (lec_hall) REFERENCES lhcs(lec_hall), FOREIGN KEY (userid) REFERENCES users(userid));`
+                `CREATE TABLE lhc_bookings(lec_hall INT NOT NULL, userid INT NOT NULL, date DATE NOT NULL, start TIME NOT NULL, end TIME NOT NULL, amount float NOT NULL, PRIMARY KEY (lec_hall, date, start, end), FOREIGN KEY (lec_hall) REFERENCES lhcs(lec_hall), FOREIGN KEY (userid) REFERENCES users(userid));`
             );
         } else if (table_name == "lab_bookings") {
             await pool.execute(
-                `CREATE TABLE lab_bookings(lab INT NOT NULL, userid INT NOT NULL, date DATE NOT NULL, start TIME NOT NULL, end TIME NOT NULL, amount float NOT NULL, PRIMARY KEY (lab, userid, date, start, end), FOREIGN KEY (lab) REFERENCES labs(lab), FOREIGN KEY (userid) REFERENCES users(userid));`
+                `CREATE TABLE lab_bookings(lab INT NOT NULL, userid INT NOT NULL, date DATE NOT NULL, start TIME NOT NULL, end TIME NOT NULL, amount float NOT NULL, PRIMARY KEY (lab, date, start, end), FOREIGN KEY (lab) REFERENCES labs(lab), FOREIGN KEY (userid) REFERENCES users(userid));`
             );
         }
     } catch (error) {
@@ -63,6 +63,14 @@ async function createTable(table_name) {
 
 // check if the required tables exist and create it if they dont
 async function init() {
+    // await mysql.createConnection({
+    //     host: process.env.MYSQL_HOST,
+    //     user: process.env.MYSQL_USER,
+    //     password: process.env.MYSQL_PASSWORD
+    // }).then((connection) => {
+    //     connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.MYSQL_DB};`);
+    // });
+
     try {
         let exists = await tableExists("users");
         if (!exists) {

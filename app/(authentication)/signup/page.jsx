@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { redirect } from 'next/navigation';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast, Flip } from "react-toastify"
@@ -11,10 +11,13 @@ import { userActions } from "@/store/userSlice"
 
 const Signup = () => {
     const dispatch = useDispatch()
-    const router = useRouter()
     let user = {}
     const unsamePasswordsRef = useRef(null)
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+
+    if((isLoggedIn)) {
+        redirect("/")
+    }
 
 
     const handleChange = (e) => {
@@ -40,7 +43,6 @@ const Signup = () => {
                 transition: Flip,
                 autoClose: 2000
             });
-            router.push("/")
         }
     }, [])
 
@@ -73,7 +75,6 @@ const Signup = () => {
                         transition: Flip,
                         autoClose: 2000
                     });
-                    router.push("/")
                 } else {
                     toast.error(jsonResponse.error, {
                         position: toast.POSITION.BOTTOM_CENTER,

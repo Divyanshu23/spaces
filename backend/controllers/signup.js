@@ -25,7 +25,7 @@ const signup = async (req, res) => {
     await pool.query('INSERT INTO users (userid, name, email, password, dept, dues, user_type) values (?, ?, ?, ?, ?, ?, ?)', [id, name, email, hashedPassword, dept, 0, user_type]);
 
     const jwtToken = jwt.sign({ id }, process.env.JWT_SECRET)
-    res.status(200).json({ success: true, authToken: jwtToken, user: { id, name, email, hashedPassword, dept, dues: 0, user_type } })
+    res.status(200).json({ success: true, authToken: jwtToken, user: { id, name, email, dept, dues: 0, user_type } })
   } catch (error) {
     res.status(500).json({ success: false, error: error });
   }

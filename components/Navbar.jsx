@@ -108,7 +108,7 @@ const Navbar = () => {
                                     </li>
                                     <li>
                                         <Link className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white hover:bg-gray-700 hover:text-white focus:text-white focus:bg-gray-700"
-                                            href="/bookings">My Bookings
+                                            href="/mybookings">My Bookings
                                         </Link>
                                     </li>
                                     <li onClick={handleLogout}>

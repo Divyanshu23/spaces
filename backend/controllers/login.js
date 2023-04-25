@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
             delete user[0][0].password
 
-            const jwtToken = jwt.sign({ id: user[0].roll }, process.env.JWT_SECRET)
+            const jwtToken = jwt.sign({ id: user[0][0].userid }, process.env.JWT_SECRET)
             res.status(200).json({ success: true, authToken: jwtToken, user: user[0][0] })
         } catch (error) {
             res.status(500).json({ success: true, error: 'Internal Server Error' })
@@ -44,7 +44,7 @@ const login = async (req, res) => {
             delete user[0][0].password
             user[0][0].user_type = "admin"
 
-            const jwtToken = jwt.sign({ id: user[0].roll }, process.env.JWT_SECRET)
+            const jwtToken = jwt.sign({ id: user[0][0].adminid }, process.env.JWT_SECRET)
             res.status(200).json({ success: true, authToken: jwtToken, user: user[0][0] })
         } catch (error) {
             res.status(500).json({ success: true, error: "Internal Server Error" })
