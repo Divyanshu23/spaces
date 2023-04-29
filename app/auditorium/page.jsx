@@ -63,18 +63,6 @@ const LHC = () => {
                 }
               </select>
             </div>
-            <div className="w-full bg-white rounded-2xl py-3 px-4 mx-2">
-              <label htmlFor="end-time" className="font-semibold text-lg text-center block pb-1">Min Capacity</label>
-              <select className="w-full border border-gray-300 rounded-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="time-slots" id="start-time" placeholder="capacity">
-                {
-                  [200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200].map((u, i) => {
-                    return (
-                      <option key={u} value={u}>{u}</option>
-                    )
-                  })
-                }
-              </select>
-            </div>
           </div>
           <button className="text-white bg-[#480cfc] border-0 py-2 px-6 focus:outline-none hover:bg-[#3a0aca] rounded text-lg transition-all transform hover:scale-105">Check Availability</button>
         </div>

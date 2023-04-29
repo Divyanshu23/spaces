@@ -130,7 +130,7 @@ export default function Home() {
 
     if (validation(filter)) {
       dispatch(filterActions.changeFilter(filter))
-      router.push("/audi/available")
+      router.push("/auditorium/available")
     }
   }
 

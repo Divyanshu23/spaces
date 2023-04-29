@@ -11,9 +11,9 @@ const Available = () => {
   const isAdmin = useSelector(state => state.user.isAdmin)
   if (isAdmin)
     redirect("/admin")
-  
+
   const dispatch = useDispatch()
-    
+
   const filter = useSelector(state => state.filter.filter)
   const [availableLabs, setAvailableLabs] = useState([])
 
@@ -22,7 +22,7 @@ const Available = () => {
     const hall = text.charAt(text.length - 2) == " " ? text.charAt(text.length - 1) : text.charAt(text.length - 2) + text.charAt(text.length - 1)
     const text2 = e.currentTarget.children[1].children[0].innerHTML
     const index = text2.indexOf('₹')
-    const dues = parseInt(text2.slice(index+1))
+    const dues = parseInt(text2.slice(index + 1))
 
     try {
       const response = await fetch(`http://127.0.0.1:3001/api/user/booklab`, {
@@ -94,7 +94,7 @@ const Available = () => {
     <div className="flex flex-col items-center">
       {
         availableLabs.map((lab) => {
-          const cost = (parseInt(filter.end) - parseInt(filter.start))*lab.booking_rate
+          const cost = (parseInt(filter.end) - parseInt(filter.start)) * lab.booking_rate
           return (
             <div onClick={handleBooking} key={lab.lab} className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <div>
@@ -109,6 +109,9 @@ const Available = () => {
 
           )
         })
+      }
+      {
+        availableLabs.length === 0 && <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">No Labs Available</div>
       }
     </div>
   )

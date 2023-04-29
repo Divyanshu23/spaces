@@ -22,7 +22,6 @@ const lh_query = async (req, res) => {
     let [rows, fields] = await pool.query(`SELECT lec_hall, capacity, projector, recording_camera, booking_rate FROM lhcs WHERE capacity >= ? AND lec_hall NOT IN (SELECT DISTINCT lec_hall FROM lhc_bookings WHERE date = ? AND start < ? AND end > ?)`, [cap, date, end+':00:00', start+':00:00']);
     
     if(rows.length == 0 && user_type[0][0].user_type == 'faculty'){
-      console.log("here");
       let sql = "SELECT distinct * from (select lhcs.lec_hall, capacity, projector, recording_camera, booking_rate FROM ((lhc_bookings join users on lhc_bookings.userid = users.userid) join lhcs on lhcs.lec_hall = lhc_bookings.lec_hall) WHERE date = ?  AND date > ? AND start < ? AND end > ? AND user_type='student')a; "; 
       let values =  [ date, today_date, end+':00:00', start+':00:00'];
       [rows, fields] = await pool.query(sql, values);
