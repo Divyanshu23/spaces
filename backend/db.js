@@ -58,6 +58,10 @@ async function createTable(table_name) {
             await pool.execute(
                 `CREATE TABLE lab_bookings(lab INT NOT NULL, userid INT NOT NULL, date DATE NOT NULL, start TIME NOT NULL, end TIME NOT NULL, amount float NOT NULL, PRIMARY KEY (lab, date, start, end), FOREIGN KEY (lab) REFERENCES labs(lab), FOREIGN KEY (userid) REFERENCES users(userid));`
             );
+        } else if (table_name == "otp") {
+            await pool.execute(
+                `CREATE TABLE otp(userid INT NOT NULL, name varchar(50) NOT NULL, email varchar(50) NOT NULL, password varchar (64) NOT NULL, dept varchar(50), user_type varchar(50) NOT NULL, otp varchar(50) NOT NULL, PRIMARY KEY ( userid ));`
+            );
         }
     } catch (error) {
         console.log(error)
@@ -95,6 +99,11 @@ async function init() {
         exists = await tableExists("lab_bookings");
         if (!exists) {
             await createTable("lab_bookings");
+            console.log('Table created successfully.');
+        }
+        exists = await tableExists("otp");
+        if (!exists) {
+            await createTable("otp");
             console.log('Table created successfully.');
         }
     } catch (error) {

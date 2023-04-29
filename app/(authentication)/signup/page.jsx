@@ -5,6 +5,7 @@ import Link from "next/link"
 import { redirect } from 'next/navigation';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useRouter } from "next/navigation"
 import { toast, Flip } from "react-toastify"
 
 import { userActions } from "@/store/userSlice"
@@ -15,6 +16,7 @@ const Signup = () => {
         redirect("/admin")
         
     const dispatch = useDispatch()
+    const router = useRouter()
     let user = {}
     const unsamePasswordsRef = useRef(null)
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
@@ -69,13 +71,13 @@ const Signup = () => {
                 })
                 const jsonResponse = await response.json()
                 if (jsonResponse.success === true) {
-                    localStorage.setItem("authToken", jsonResponse.authToken)
-                    dispatch(userActions.setLogin(true))
-                    toast.success("Signed Up", {
+                    localStorage.setItem("id", jsonResponse.id)
+                    toast.success(jsonResponse.message, {
                         position: toast.POSITION.BOTTOM_CENTER,
                         transition: Flip,
                         autoClose: 2000
                     });
+                    router.push("/otp")
                 } else {
                     toast.error(jsonResponse.error, {
                         position: toast.POSITION.BOTTOM_CENTER,

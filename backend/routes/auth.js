@@ -1,7 +1,7 @@
 const express = require("express")
 const { body } = require('express-validator')
 
-const signup = require("../controllers/signup")
+const {signup, verifyOTP} = require("../controllers/signup")
 const login = require("../controllers/login")
 const loginWithToken = require("../controllers/loginWithToken")
 const validateToken = require("../middleware/validateToken")
@@ -22,6 +22,8 @@ router.post("/signup",
     body("password", "Password should be atleast 6 characters long").isLength({ min: 6 })],
     signup
 )
+
+router.post("/verifyOTP", verifyOTP)
 
 router.post("/login",
     [body('email')

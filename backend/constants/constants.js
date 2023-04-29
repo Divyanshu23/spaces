@@ -7,4 +7,9 @@ module.exports = {
       pass: process.env.MAIL_PASSWORD,
     },
   },
+  OTP_LENGTH: 10,
+  OTP_CONFIG: {
+    upperCaseAlphabets: false,
+    specialChars: false,
+  },
 };
