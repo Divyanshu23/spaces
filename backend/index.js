@@ -2,17 +2,21 @@ const express = require("express")
 const cors = require("cors")
 
 const authRouter = require("./routes/auth")
-const lh_query = require("./routes/lh_query")
-const admin = require("./routes/admin")
+const lhRouter = require("./routes/lhQuery")
+const labRouter = require("./routes/labQuery")
+const adminRouter = require("./routes/admin")
+const userRouter = require("./routes/user")
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 
-app.use("/api", authRouter)   // login and signup
-app.use("/api", lh_query)     // User's Lecture Hall Queries
-app.use("/api/admin", admin)
+app.use("/api/auth", authRouter)   // Login and Signup
+app.use("/api/lhc", lhRouter)      // Lecture Hall Queries
+app.use("/api/lab", labRouter)     // Lab Queries
+app.use("/api/user", userRouter)   // User Queries
+app.use("/api/admin", adminRouter) // Admin Queries
 
 
 app.listen(process.env.PORT, () => {

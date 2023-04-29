@@ -15,7 +15,7 @@ const Footer = () => {
                             <path d="M24.6667 28.0002C26.5077 28.0002 28 26.5078 28 24.6668C28 22.8259 26.5077 21.3335 24.6667 21.3335C22.8258 21.3335 21.3334 22.8259 21.3334 24.6668C21.3334 26.5078 22.8258 28.0002 24.6667 28.0002Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Instant Booking</h3>
-                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Free worldwide delivery over orders above $100</p>
+                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Book <span className=" font-semibold">LHCs</span>, <span className=" font-semibold">Labs</span> and <span className=" font-semibold">Auditorium</span> at IITK in a click of a button</p>
                     </div>
 
                     {/* customer Grid Card */}
@@ -24,9 +24,8 @@ const Footer = () => {
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M28 20C28 20.7072 27.719 21.3855 27.219 21.8856C26.7189 22.3857 26.0406 22.6667 25.3333 22.6667H9.33333L4 28V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H25.3333C26.0406 4 26.7189 4.28095 27.219 4.78105C27.719 5.28115 28 5.95942 28 6.66667V20Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Customer Care</h3>
-                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">
-                            Our customer care is available 24/7 at <span className=" font-semibold cursor-pointer">+495-589-509</span> and <span className=" font-semibold cursor-pointer">customercare@gmail.com</span>
+                        <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Admin Support</h3>
+                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Reach out to Admin @ LHC Office for any queries or support
                         </p>
                     </div>
 
@@ -39,8 +38,8 @@ const Footer = () => {
                             <path d="M9.33333 30.6667L4 25.3333L9.33333 20" stroke="#1F2937" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             <path d="M28 17.3335V20.0002C28 21.4147 27.4381 22.7712 26.4379 23.7714C25.4377 24.7716 24.0812 25.3335 22.6667 25.3335H4" stroke="#1F2937" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Recycle</h3>
-                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">All out products are 100 percent recycable</p>
+                        <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Fast and Simple</h3>
+                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Application is powered by blazingly fast technologies as <span className=" font-semibold">Next.js</span> and <span className=" font-semibold">MySQL</span></p>
                     </div>
 
                     {/* Secure Payment Card */}
@@ -50,7 +49,7 @@ const Footer = () => {
                             <path d="M15.9999 29.3332C15.9999 29.3332 26.6666 23.9998 26.6666 15.9998V6.6665L15.9999 2.6665L5.33325 6.6665V15.9998C5.33325 23.9998 15.9999 29.3332 15.9999 29.3332Z" stroke="#1F2937" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <h3 className=" text-xl leading-5 font-semibold text-gray-800 lg:mt-10 mt-8 ">Book & Pay Later</h3>
-                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Transaction process has end to end encryption</p>
+                        <p className="text-center text-base leading-6 font-normal text-gray-600 mt-4 lg:w-full md:w-9/12 w-full">Book now and amount will be added to your dues to be paid later</p>
                     </div>
                 </div>
             </div>

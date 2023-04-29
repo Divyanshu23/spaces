@@ -1,11 +1,11 @@
 const pool = require("../db")
 
 const lab_query = async (req, res) => {
-    const { lab } = req.body;
+    const { lab } = req.query;
 
     try {
-        let sql = `select * from lab_bookings where lab = ${lab}`;
-        const results = await pool.query(sql)
+        let sql = 'select * from lab_bookings where lab = ?';
+        const results = await pool.query(sql,[lab])
         res.status(200).json({ success: true, labs: results[0]})
         
     } catch (error) {

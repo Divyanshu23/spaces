@@ -3,9 +3,9 @@ const { sendMail } = require('../services/emailService');
 
 async function cancel_bookings_and_notify(hall, Booking_Date, start_time, end_time, res) {
 
-    var bal;
-    var user_id ;
-    var user_email =  null ;
+    let bal;
+    let user_id ;
+    let user_email =  null ;
         try {
            let b = await pool.query("select amount, userid from lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, Booking_Date, start_time, end_time]);
             bal = b[0][0].amount;   // to be verified
@@ -60,7 +60,7 @@ async function cancel_bookings_and_notify(hall, Booking_Date, start_time, end_ti
     }
 
 
-const bookLHC = async (req, res) => {
+const bookLab = async (req, res) => {
     const { hall, date, from, to } = req.body;
     const { id } = req.user
 
@@ -90,15 +90,12 @@ const bookLHC = async (req, res) => {
         }
 
         else if (count > 0 && user_type[0][0].user_type == 'faculty') { // overwrite
-            // res.status(400).json({ success: false, error: "Booking already exists" })
             
             sql = "SELECT lab, date, start, end FROM lab_bookings INNER JOIN users ON users.userid = lab_bookings.userid  WHERE lab = ? AND date = ? AND date > ? AND start < ? AND end > ? AND user_type='student' ";
             let values =  [hall, date, today_date, to+':00:00', from+':00:00'];
             const clashing_bookings = await pool.query(sql, values);
-            console.log(to);
             // run a loop over all the clashing bookings by calling the function cancelBookings();
             for (let i = 0; i < clashing_bookings[0].length; i++) {
-                // const {cur_hall, cur_date, cur_start, cur_end} = clashing_bookings[0][i];
                 cancel_bookings_and_notify(clashing_bookings[0][i].lab, clashing_bookings[0][i].date, clashing_bookings[0][i].start, clashing_bookings[0][i].end,  res);
               }
 
@@ -141,4 +138,4 @@ const bookLHC = async (req, res) => {
     }
 }
 
-module.exports = bookLHC
+module.exports = bookLab

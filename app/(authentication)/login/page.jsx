@@ -54,7 +54,7 @@ const Login = () => {
             toggelunsamePasswordRef()
         } else {
             try {
-                const response = await fetch(`http://127.0.0.1:3001/api/login`, {
+                const response = await fetch(`http://localhost:3001/api/auth/login`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json",

@@ -1,7 +1,10 @@
 const dotenv = require("dotenv")
 const mysql = require("mysql2/promise")
 
-dotenv.config()
+const result = dotenv.config({ path: __dirname + '/.env' })
+if(result.error) {
+    throw result.error
+}
 
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
@@ -36,7 +39,7 @@ async function createTable(table_name) {
             );
             await pool.execute(
                 `
-                INSERT INTO lhcs (lec_hall, capacity, projector, recording_camera, booking_rate) VALUES (1, 100, true, true, 300), (2, 150, true, false, 350), (3, 200, false, true, 400), (4, 250, true, false, 450), (5, 300, false, true, 500), (6, 350, false, false, 550), (7, 400, true, false, 600), (8, 450, false, false, 650), (9, 500, true, false, 700), (10, 550, true, true, 750), (11, 600, true, true, 800), (12, 650, false, true, 850), (13, 700, false, true, 900), (14, 750, false, false, 950), (15, 800, true, false, 1000), (16, 850, false, false, 1050), (17, 900, true, false, 1100), (18, 950, false, true, 1150), (19, 1100, true, true, 1300), (20, 1000, false, true, 1200);`
+                INSERT INTO lhcs (lec_hall, capacity, projector, recording_camera, booking_rate) VALUES (1, 100, true, true, 300), (2, 150, true, false, 350), (3, 200, false, true, 400), (4, 250, true, false, 450), (5, 300, false, true, 500), (6, 350, false, false, 550), (7, 400, true, false, 600), (8, 450, false, false, 650), (9, 500, true, false, 700), (10, 550, true, true, 750), (11, 600, true, true, 800), (12, 650, false, true, 850), (13, 700, false, true, 900), (14, 750, false, false, 950), (15, 800, true, false, 1000), (16, 850, false, false, 1050), (17, 900, true, false, 1100), (18, 950, false, true, 1150), (19, 1100, true, true, 1300), (20, 1150, false, true, 1200);`
             );
         } else if (table_name == "labs") {
             await pool.execute(
@@ -63,14 +66,6 @@ async function createTable(table_name) {
 
 // check if the required tables exist and create it if they dont
 async function init() {
-    // await mysql.createConnection({
-    //     host: process.env.MYSQL_HOST,
-    //     user: process.env.MYSQL_USER,
-    //     password: process.env.MYSQL_PASSWORD
-    // }).then((connection) => {
-    //     connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.MYSQL_DB};`);
-    // });
-
     try {
         let exists = await tableExists("users");
         if (!exists) {

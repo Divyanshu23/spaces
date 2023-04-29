@@ -3,8 +3,8 @@ module.exports = {
   MAIL_SETTINGS: {
     service: "gmail",
     auth: {
-      user: 'cs315spacesiitk@gmail.com', // process.env.MAIL_EMAIL,
-      pass: 'eccqrqzkcwpdskfe' ,
+      user: process.env.MAIL_ID,
+      pass: process.env.MAIL_PASSWORD,
     },
   },
 };

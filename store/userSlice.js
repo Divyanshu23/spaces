@@ -16,6 +16,12 @@ const userSlice = createSlice({
         },
         setAdmin: (state, action) => {
             state.isAdmin = action.payload
+        },
+        addDues: (state, action) => {
+            state.user.dues += action.payload
+        },
+        subtractDues: (state, action) => {
+            state.user.dues -= action.payload
         }
     }
 })

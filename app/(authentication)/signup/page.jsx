@@ -60,7 +60,7 @@ const Signup = () => {
         } else if (user.password === user.confirmPassword) {
             try {
                 delete user.confirmPassword
-                const response = await fetch(`http://127.0.0.1:3001/api/signup`, {
+                const response = await fetch(`http://127.0.0.1:3001/api/auth/signup`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json",
@@ -71,9 +71,6 @@ const Signup = () => {
                 if (jsonResponse.success === true) {
                     localStorage.setItem("authToken", jsonResponse.authToken)
                     dispatch(userActions.setLogin(true))
-                    // if(jsonResponse.isAdmin) {
-                    //     dispatch(userActions.toggleAdmin(true))
-                    // }
                     toast.success("Signed Up", {
                         position: toast.POSITION.BOTTOM_CENTER,
                         transition: Flip,

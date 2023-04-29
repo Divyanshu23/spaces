@@ -4,20 +4,14 @@ import Image from "next/image";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from "next/navigation";
-
+import { toast, Flip } from "react-toastify"
 
 import { filterActions } from "@/store/filterSlice"
 
-export async function generateStaticParams() {
-  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(ele => {
-    return {id: String(ele)}
-  })
-}
-
-export const dynamicParams = false
-
 const LHC = ({ params }) => {
   const id = params.id
+  if(id > 20)
+    throw new Error("Invalid Lecture Hall")
 
   const isAdmin = useSelector(state => state.user.isAdmin)
 
@@ -32,6 +26,14 @@ const LHC = ({ params }) => {
   const end = useRef(null)
 
   const validation = (filter) => {
+    if(!filter.date) {
+      toast.error("Choose a date", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        transition: Flip,
+        autoClose: 2000
+      });
+      return false
+    }
     const dateString = `${filter.date}T${filter.start < 10 ? `0${filter.start}` : filter.start}:00:00`;
     const timeStamp = Date.parse(dateString)
 
@@ -116,15 +118,15 @@ const LHC = ({ params }) => {
               <label htmlFor="end-time" className="font-semibold text-lg text-center block pb-1">To</label>
               <select ref={end} className="w-full border border-gray-300 rounded-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="time-slots" id="end-time">
                 {
-                  [...Array(4)].map((u, i) => {
+                  [...Array(3)].map((u, i) => {
                     return (
-                      <option key={i} value={i + 8}>{i + 8 + ":00 am"}</option>
+                      <option key={i} value={i + 9}>{i + 9 + ":00 am"}</option>
                     )
                   })
                 }
                 <option key="12" value={12}>{12 + ":00 noon"}</option>
                 {
-                  [...Array(6)].map((u, i) => {
+                  [...Array(7)].map((u, i) => {
                     return (
                       <option key={i} value={i + 13}>{i + 13 + ":00 pm"}</option>
                     )

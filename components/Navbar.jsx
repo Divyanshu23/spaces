@@ -5,6 +5,7 @@ import { BiUserPlus } from "react-icons/bi"
 import { useSelector, useDispatch } from "react-redux"
 import { useRef } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { toast, Flip } from "react-toastify"
 
 import { userActions } from "../store/userSlice"
@@ -15,6 +16,7 @@ const Navbar = () => {
     const accountMenu = useRef(null)
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const handleLHCDropdown = (e) => {
         if (lhcMenu.current.style.display == "" || lhcMenu.current.style.display == "none") {
@@ -45,6 +47,7 @@ const Navbar = () => {
         dispatch(userActions.setLogin(false))
         dispatch(userActions.setAdmin(false))
         dispatch(userActions.setUser(null))
+        router.push("/")
         toast.success("Logged Out", {
             position: toast.POSITION.BOTTOM_CENTER,
             transition: Flip,

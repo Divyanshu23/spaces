@@ -14,7 +14,8 @@ module.exports.sendMail = async (params) => {
         style="max-width: 90%; margin: auto; padding-top: 20px"
       >
         <h2>IMPORTANT</h2>
-        <h4>WE would like to bring to your notice that your booking for ${params.type}${params.h} on ${params.d} from ${params.s} to ${params.e} has been cancelled. Please contact the LHC office for more information.</h4>
+        <h4>Dear Student,</h4>
+        <h4>We would like to bring to your notice that your booking for ${params.type}${params.h} on ${params.d} from ${params.s} to ${params.e} has been cancelled. Please contact the LHC office for more information.</h4>
     
       </div>
     `,

@@ -25,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     const loginWithToken = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:3001/api/loginWithToken`, {
+        const response = await fetch(`http://127.0.0.1:3001/api/auth/loginWithToken`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
@@ -35,6 +35,8 @@ export default function Home() {
         const jsonResponse = await response.json()
         if (jsonResponse.success === true) {
           dispatch(userActions.setLogin(true))
+          if (jsonResponse.user.user_type == "admin")
+            dispatch(userActions.setAdmin(true))
           dispatch(userActions.setUser(jsonResponse.user))
           toast.success("Logged In", {
             position: toast.POSITION.BOTTOM_CENTER,
@@ -59,6 +61,14 @@ export default function Home() {
   const router = useRouter()
 
   const validation = (filter) => {
+    if(!filter.date) {
+      toast.error("Choose a date", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        transition: Flip,
+        autoClose: 2000
+      });
+      return false
+    }
     const dateString = `${filter.date}T${filter.start < 10 ? `0${filter.start}` : filter.start}:00:00`;
     const timeStamp = Date.parse(dateString)
 
@@ -120,7 +130,7 @@ export default function Home() {
 
     if (validation(filter)) {
       dispatch(filterActions.changeFilter(filter))
-      router.push("/lhc/available")
+      router.push("/audi/available")
     }
   }
 
@@ -163,15 +173,15 @@ export default function Home() {
               <label htmlFor="end-time" className="font-semibold text-lg text-center block pb-1">To</label>
               <select ref={end} className="w-full border border-gray-300 rounded-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="time-slots" id="end-time">
                 {
-                  [...Array(4)].map((u, i) => {
+                  [...Array(3)].map((u, i) => {
                     return (
-                      <option key={i} value={i + 8}>{i + 8 + ":00 am"}</option>
+                      <option key={i} value={i + 9}>{i + 9 + ":00 am"}</option>
                     )
                   })
                 }
                 <option key="12" value={12}>{12 + ":00 noon"}</option>
                 {
-                  [...Array(6)].map((u, i) => {
+                  [...Array(7)].map((u, i) => {
                     return (
                       <option key={i} value={i + 13}>{i + 13 + ":00 pm"}</option>
                     )

@@ -16,7 +16,7 @@ const signup = async (req, res) => {
     const user = await pool.query('SELECT * FROM users where userid=? OR email = ?', [id, email]);
 
     if (user[0].length > 0) {
-      return res.status(400).json({ success: false, error: "User with same roll no or email already exists" });
+      return res.status(400).json({ success: false, error: "User with same id or email already exists" });
     }
 
     const salt = await bcrypt.genSalt(6)

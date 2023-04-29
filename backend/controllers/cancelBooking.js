@@ -1,18 +1,18 @@
 const pool = require("../db")
 
 const cancelBooking = async (req, res) => {
-    const { hall, dateString, start, end, type } = req.body;
-    const date = dateString.split("/").reverse().join("-");
+    const { hall, date, start, end, type } = req.body;
+    const dateReversed = date.split("-").reverse().join("-");
     let bal;
     let user_id;
     if (type == 'lhc') {
         try {
-            let b = await pool.query("select amount, userid from lhc_bookings where lec_hall = ? and date = ? and start = ? and end = ?", [hall, date, start, end]);
+            let b = await pool.query("select amount, userid from lhc_bookings where lec_hall = ? and date = ? and start = ? and end = ?", [hall, dateReversed, start, end]);
 
-            bal = b[0][0].amount;   //To be verified
+            bal = b[0][0].amount;
             user_id = b[0][0].userid;
 
-            await pool.query("Delete FROM lhc_bookings WHERE lec_hall = ? and date = ? and start = ? and end = ?", [hall, date, start, end]);
+            await pool.query("Delete FROM lhc_bookings WHERE lec_hall = ? and date = ? and start = ? and end = ?", [hall, dateReversed, start, end]);
 
             await pool.query("UPDATE users SET dues = dues - ? WHERE userid = ?", [bal, user_id]);
             res.status(200).json({ success: true, message: 'Booking cancelled successfully' });
@@ -23,12 +23,12 @@ const cancelBooking = async (req, res) => {
         }
     } else if (type == 'lab') {
         try {
-            let b = await pool.query("select amount, userid from lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, date, start, end])
+            let b = await pool.query("select amount, userid from lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, dateReversed, start, end])
 
-            bal = b[0][0].amount;   // to be verified
+            bal = b[0][0].amount;
             user_id = b[0][0].userid;
 
-            await pool.query("Delete FROM lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, date, start, end]);
+            await pool.query("Delete FROM lab_bookings where lab = ? and date = ? and start = ? and end = ?", [hall, dateReversed, start, end]);
 
             await pool.query("UPDATE users SET dues = dues - ? WHERE userid = ?", [bal, user_id]);
             res.status(200).json({ success: true, message: 'Booking cancelled successfully' });
