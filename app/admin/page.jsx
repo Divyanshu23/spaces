@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const adminLogin = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:3001/api/admin/adminlogin`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/adminlogin`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
@@ -56,7 +56,7 @@ export default function Home() {
   const handleLHCBookings = async (e) => {
     const lhcNo = lhc.current.value
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/admin/lhcbookings?hall=${lhcNo}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/lhcbookings?hall=${lhcNo}`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -92,7 +92,7 @@ export default function Home() {
   const handleLabBookings = async (e) => {
     const labNo = lab.current.value
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/admin/labbookings?lab=${labNo}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/labbookings?lab=${labNo}`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -128,7 +128,7 @@ export default function Home() {
   const handleUserBookings = async (e) => {
     const userid = user.current.value
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/admin/userbookings?userid=${userid}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/userbookings?userid=${userid}`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -185,7 +185,7 @@ export default function Home() {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -236,7 +236,7 @@ export default function Home() {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -287,7 +287,7 @@ export default function Home() {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -338,7 +338,7 @@ export default function Home() {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

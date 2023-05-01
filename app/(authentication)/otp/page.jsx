@@ -33,7 +33,7 @@ const OTPVerification = () => {
 
     const handleVerifyOTP = async (e) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/auth/verifyOTP`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/verifyOTP`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",

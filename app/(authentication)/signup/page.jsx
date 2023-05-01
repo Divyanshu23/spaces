@@ -62,7 +62,7 @@ const Signup = () => {
         } else if (user.password === user.confirmPassword) {
             try {
                 delete user.confirmPassword
-                const response = await fetch(`http://127.0.0.1:3001/api/auth/signup`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json",

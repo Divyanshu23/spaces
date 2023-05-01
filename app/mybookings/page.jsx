@@ -25,7 +25,7 @@ const MyBookings = () => {
   useEffect(() => {
     const getBookings = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:3001/api/user/myBookings`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/myBookings`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
@@ -66,7 +66,7 @@ const MyBookings = () => {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -117,7 +117,7 @@ const MyBookings = () => {
     const dues = children[1].children[2].firstElementChild.innerText;
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/cancel`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/cancel`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

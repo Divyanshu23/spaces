@@ -25,7 +25,7 @@ const Available = () => {
     const dues = parseInt(text2.slice(index + 1))
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/api/user/booklhc`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/booklhc`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -61,7 +61,7 @@ const Available = () => {
   useEffect(() => {
     const getAvailableLHCs = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:3001/api/lhc/checkLHCs?date=${filter.date}&start=${filter.start}&end=${filter.end}&cap=${filter.capacity}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lhc/checkLHCs?date=${filter.date}&start=${filter.start}&end=${filter.end}&cap=${filter.capacity}`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
