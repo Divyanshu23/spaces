@@ -1,5 +1,7 @@
 const express = require("express")
 const cors = require("cors")
+const dotenv = require("dotenv")
+dotenv.config({ path: __dirname + '/.env' })
 
 const authRouter = require("./routes/auth")
 const lhRouter = require("./routes/lhQuery")
@@ -17,7 +19,6 @@ app.use("/api/lhc", lhRouter)      // Lecture Hall Queries
 app.use("/api/lab", labRouter)     // Lab Queries
 app.use("/api/user", userRouter)   // User Queries
 app.use("/api/admin", adminRouter) // Admin Queries
-
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
