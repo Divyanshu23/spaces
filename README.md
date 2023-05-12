@@ -1,12 +1,15 @@
-CS315 LHC/Lab Booking System
+# Spaces: IITK's Lecture Hall, Labs and Auditorium Booking System
+# Course Project - CS315, Prof. Arnab Bhattacharya
+
+> **_NOTE:_** If you are trying and testing out the live version at https://spaces-iitk.vercel.app/ you will not be able to do necessary stuff like login, signup, making bookings, etc because the deployed app is not connected to a cloud MySQL instance. We tried doing that but couldn't properly configure CORS and thus fetch request is being blocked because of the improper configuration. We highly appreciate help from community to do the required config and create a pull request.
 
 ## Getting Started
 
-Install Nodejs and npm for your platform (Windows, Linux, Mac)
+Install Nodejs, npm and MySQL for your platform (Windows, Linux, Mac)
 
 Clone this repo
 ```bash
-git clone git@github.com:Divyanshu23/booking-system.git
+git clone git@github.com:Divyanshu23/spaces.git
 ```
 
 Install the dependencies:
@@ -14,21 +17,40 @@ Install the dependencies:
 npm i
 ```
 
-Run the development server:
+Create .env.local file in root directory of project and add the following environment variable into the file
+```bash
+NEXT_PUBLIC_API_URL=http://127.0.0.1:3001
+```
 
+Create .env file in backend directory inside root directory and add the following environment variables into the file
+```bash
+PORT=${Port for running backend app}
+MYSQL_HOST=localhost
+MYSQL_USER=${Your MySQL user}
+MYSQL_PASSWORD=${Your MySQL password}
+MYSQL_DB=${Your MySQL database}
+JWT_SECRET=${Your secret key to sign the data and generate JSON web tokens. Choose any strong pattern of string for this.}
+MAIL_ID=${Email Id for sending out OTP and cancellation notifications}
+MAIL_PASSWORD=${Email Id's password}
+```
+
+Run the development server:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the backend server:
+```bash
+npm run backend-dev
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.js`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the app live.
 
 
-## Deploy on Vercel
+## Deployed on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The live version of the projects is deployed on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) at this [link](https://spaces-iitk.vercel.app/).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Database Schema
+![Database Schema](public\schema.png)
