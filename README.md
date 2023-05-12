@@ -53,4 +53,4 @@ The live version of the projects is deployed on the [Vercel Platform](https://ve
 
 
 ## Database Schema
-![Database Schema](public\schema.png)
+![Database Schema](./public/schema.png)
